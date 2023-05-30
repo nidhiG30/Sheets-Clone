@@ -12,6 +12,7 @@ body {
   background: #006266;
   display: flex;
   align-items: center;
+  padding-left: 1rem;
 }
 
 .page-action {
@@ -21,7 +22,7 @@ body {
 
 .cellprop-actions-con {
   height: 3rem;
-  background: lightsalmon;
+  background-color: #ecf0f1;
   display: flex;
   align-items: center;
   padding-left: 1rem;
@@ -50,11 +51,40 @@ body {
 .forfumla-actions-cont {
   height: 3rem;
   background: lightblue;
+  padding-left: 1rem;
 }
 
 .sheet-actions-cont {
   height: 3rem;
-  background: lightcoral;
+  display: flex;
+  align-items: center;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  gap: 1rem;
+  background-color: #ecf0f1;
+}
+
+.sheet-actions-cont > * {
+  display: inline-block;
+}
+
+.sheet-add-icon {
+  width: 2vw;
+}
+
+.sheets-folder-cont {
+  display: flex;
+  align-items: center;
+  height: 80%;
+  width: 5rem;
+  width: calc(100vw - 2vw);
+}
+
+.sheet-folder {
+  text-decoration: underline;
+  font-weight: bold;
+  text-decoration-thickness: 3px;
+  font-size: 0.9rem;
 }
 
 .grid-cont {
