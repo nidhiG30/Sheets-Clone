@@ -1,28 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./style.css">
-  <title>MyExcel</title>
-</head>
-<body>
-  <!-- Top container: Menu Bar -->
-  <div class="page-actions-con"></div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <title>MyExcel</title>
+  </head>
+  <body>
+    <!-- Top container: Menu Bar -->
+    <div class="page-actions-con">
+      <div class="page-action">Home</div>
+      <div class="page-action">File</div>
+      <div class="page-action">Insert</div>
+      <div class="page-action">Layout</div>
+      <div class="page-action">Help</div>
+    </div>
 
-  <!-- Container for actions on cell: Cell properties -->
-  <div class="cellprop-actions-con"></div>
+    <!-- Container for actions on cell: Cell properties -->
+    <div class="cellprop-actions-con">
+      <span class="material-icons"> content_copy </span>
+      <span class="material-icons"> content_cut </span>
+      <span class="material-icons"> content_paste </span>
 
-  <!-- Container for Address and Formula Bar -->
-  <div class="forfumla-actions-cont"></div>
+      <select class="font-family-prop">
+        <option value="monospace">Monospace</option>
+        <option value="sans-serif">Sans-Serif</option>
+        <option value="fantasy">Fantasy</option>
+        <option value="cursive">Cursive</option>
+      </select>
 
-  <!-- Container for Cells -->
-  <div class="grid-cont"></div>
+      <select class="font-size-prop">
+        <option value="14">14</option>
+        <option value="16">16</option>
+        <option value="18">18</option>
+        <option value="20">20</option>
+      </select>
 
-  <!-- Container to Add/Remove Sheets and show them -->
-  <div class="sheet-actions-cont"></div>
-  
-  <script src="./script.js"></script>
-</body>
+      <span class="material-icons"> format_bold </span>
+      <span class="material-icons"> format_italic </span>
+      <span class="material-icons"> format_underlined </span>
+      <span class="material-icons"> format_align_left </span>
+      <span class="material-icons"> format_align_center </span>
+      <span class="material-icons"> format_align_right </span>
+      <span class="material-icons"> format_align_justify </span>
+    </div>
+
+    <!-- Container for Address and Formula Bar -->
+    <div class="forfumla-actions-cont"></div>
+
+    <!-- Container for Cells -->
+    <div class="grid-cont"></div>
+
+    <!-- Container to Add/Remove Sheets and show them -->
+    <div class="sheet-actions-cont"></div>
+
+    <script src="./script.js"></script>
+  </body>
 </html>

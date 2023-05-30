@@ -9,12 +9,42 @@ body {
 
 .page-actions-con {
   height: 3rem;
-  background: lightgreen;
+  background: #006266;
+  display: flex;
+  align-items: center;
+}
+
+.page-action {
+  margin: 0.5rem;
+  color: #f1f2f6;
 }
 
 .cellprop-actions-con {
   height: 3rem;
   background: lightsalmon;
+  display: flex;
+  align-items: center;
+  padding-left: 1rem;
+}
+
+/* width & hight can't be set on span elements, that's why usig inline-block display property. */
+.cellprop-actions-con > * {
+  display: inline-block;
+  margin-right: 1rem;
+}
+
+.cellprop-actions-con > select {
+  border: none;
+  border-radius: 2px;
+  outline: none;
+}
+
+.font-family-prop {
+  padding: 0.2rem;
+}
+
+.font-size-prop {
+  padding: 0.2rem;
 }
 
 .forfumla-actions-cont {
