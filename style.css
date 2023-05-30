@@ -48,10 +48,35 @@ body {
   padding: 0.2rem;
 }
 
-.forfumla-actions-cont {
-  height: 3rem;
-  background: lightblue;
+.formula-actions-cont {
+  height: 2rem;
+  background-color: #ecf0f1;
   padding-left: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.formula-actions-cont > * {
+  display: inline-block;
+  margin-right: 0.7rem;
+}
+
+.formula-icon {
+  width: 1.2rem;
+}
+
+.address-bar {
+  width: 5rem;
+}
+
+.formula-bar {
+  width: calc( 100vw - 5rem - 0.7rem - 0.7rem - 0.7rem )
+}
+
+.formula-actions-cont > input {
+  border: none;
+  outline: none;
+  height: 70%;
 }
 
 .sheet-actions-cont {
@@ -88,5 +113,5 @@ body {
 }
 
 .grid-cont {
-  height: calc(100vh - 3rem - 3rem - 3rem - 3rem);
+  height: calc(100vh - 3rem - 3rem - 2rem - 3rem);
 }
