@@ -1,0 +1,32 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+}
+
+.page-actions-con {
+  height: 3rem;
+  background: lightgreen;
+}
+
+.cellprop-actions-con {
+  height: 3rem;
+  background: lightsalmon;
+}
+
+.forfumla-actions-cont {
+  height: 3rem;
+  background: lightblue;
+}
+
+.sheet-actions-cont {
+  height: 3rem;
+  background: lightcoral;
+}
+
+.grid-cont {
+  height: calc(100vh - 3rem - 3rem - 3rem - 3rem);
+}
