@@ -67,6 +67,7 @@ body {
 
 .address-bar {
   width: 5rem;
+  text-align: center;
 }
 
 .formula-bar {

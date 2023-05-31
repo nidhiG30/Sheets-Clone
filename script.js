@@ -4,6 +4,7 @@ let cols = 26; // total alphabets are 26
 let addressRowCont = document.querySelector('.address-row-cont');
 let addressColCont = document.querySelector('.address-col-cont');
 let cellsCont = document.querySelector('.cells-cont');
+let addressBar = document.querySelector('.address-bar');
 
 for (let i = 0; i < rows; i++) {
   let addressRow = document.createElement('div');
@@ -27,6 +28,15 @@ for (let i = 0; i < rows; i++) {
     cell.setAttribute('class', 'cell');
     cell.setAttribute('contentEditable', 'true');
     rowCont.appendChild(cell);
+    addListenerForAddressBarDisplay(cell, i, j);
   }
   cellsCont.appendChild(rowCont);
+}
+
+function addListenerForAddressBarDisplay(cell, i, j) {
+  cell.addEventListener('click', e => {
+    let rowID = i + 1;
+    let colID = String.fromCharCode(65 + j);
+    addressBar.value = `${colID}${rowID}`;
+  })
 }
