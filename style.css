@@ -114,4 +114,31 @@ body {
 
 .grid-cont {
   height: calc(100vh - 3rem - 3rem - 2rem - 3rem);
+  position: relative;
+}
+
+.top-left-dummy-box {
+  height: 2rem;
+  width: 2rem;
+  background-color: #747d8c;
+}
+
+.address-col-cont {
+  height: 10rem;
+  width: 2rem;
+  background-color: lightblue;
+}
+
+.cells-cont {
+  position: absolute;
+  top: 0;
+  left: 2rem;
+  background-color: lightgreen;
+  width: 10rem;
+  height: 10rem;
+}
+
+.address-row-cont {
+  height: 2rem;
+  background-color: lightpink;
 }
