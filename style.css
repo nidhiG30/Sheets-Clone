@@ -123,11 +123,14 @@ body {
   height: 2rem;
   width: 2rem;
   background-color: #747d8c;
+  position: fixed;
+  z-index: 5;
 }
 
 .address-row-cont {
-  height: 10rem;
-  width: 2rem;
+  position: sticky;
+  top: 2rem;
+  left: 0;
 }
 
 .cells-cont {
@@ -137,8 +140,10 @@ body {
 }
 
 .address-col-cont {
-  height: 2rem;
   display: flex;
+  position: sticky;
+  top: 0;
+  left: 2rem;
 }
 
 .address-row {
@@ -157,4 +162,15 @@ body {
   justify-content: center;
   align-items: center;
   border: 1px solid #dfe4ea;
+}
+
+.cell {
+  height: 2rem;
+  width: 5rem;
+  border: 1px solid #dfe4ea;
+  outline: none;
+}
+
+.row-cont {
+  display: flex;
 }
