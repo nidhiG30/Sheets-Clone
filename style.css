@@ -123,22 +123,19 @@ body {
   background-color: #747d8c;
 }
 
-.address-col-cont {
+.address-row-cont {
   height: 10rem;
   width: 2rem;
-  background-color: lightblue;
 }
 
 .cells-cont {
   position: absolute;
   top: 0;
   left: 2rem;
-  background-color: lightgreen;
   width: 10rem;
   height: 10rem;
 }
 
-.address-row-cont {
+.address-col-cont {
   height: 2rem;
-  background-color: lightpink;
 }
