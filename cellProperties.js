@@ -1,7 +1,8 @@
 // Storage
 let sheetDB = [];
 
-for (let i = 0; i < rows; i++) { // rows & cols are fetched from 'grid.js', bcz it is loaded before this file in the DOM
+for (let i = 0; i < rows; i++) {
+  // rows & cols are fetched from 'grid.js', bcz it is loaded before this file in the DOM
   let sheetRow = []; // containes 1-100 cell's collected data
   for (let j = 0; j < cols; j++) {
     let cellProp = {
@@ -32,7 +33,7 @@ let leftAlign = alignment[0];
 let centerAlign = alignment[1];
 let rightAlign = alignment[2];
 let activeColorProp = '#d1d8e0';
-let inactiveColorProp = "#ecf0f1";
+let inactiveColorProp = '#ecf0f1';
 
 // Application of two-way binding
 // Attach property listeners
@@ -43,28 +44,68 @@ bold.addEventListener('click', e => {
   // Modifictaion
   cellProp.bold = !cellProp.bold; // Data Change
   cell.style.fontWeight = cellProp.bold ? 'bold' : 'normal'; // UI change (1)
-  bold.style.backgroundColor = cellProp.bold ? activeColorProp : inactiveColorProp; // UI change (2)
-})
+  bold.style.backgroundColor = cellProp.bold
+    ? activeColorProp
+    : inactiveColorProp; // UI change (2)
+});
 
 italic.addEventListener('click', e => {
   let address = addressBar.value;
   let [cell, cellProp] = activeCell(address);
 
-  // Modifictaion
-  cellProp.italic = !cellProp.italic; // Data Change
-  cell.style.fontStyle = cellProp.italic ? 'italic' : 'normal'; // UI change (1)
-  italic.style.backgroundColor = cellProp.italic ? activeColorProp : inactiveColorProp; // UI change (2)
-})
+  cellProp.italic = !cellProp.italic;
+  cell.style.fontStyle = cellProp.italic ? 'italic' : 'normal';
+  italic.style.backgroundColor = cellProp.italic
+    ? activeColorProp
+    : inactiveColorProp;
+});
 
 underline.addEventListener('click', e => {
   let address = addressBar.value;
   let [cell, cellProp] = activeCell(address);
 
-  // Modifictaion
-  cellProp.underline = !cellProp.underline; // Data Change
-  cell.style.textDecoration = cellProp.underline ? 'underline' : 'none'; // UI change (1)
-  underline.style.backgroundColor = cellProp.underline ? activeColorProp : inactiveColorProp; // UI change (2)
-})
+  cellProp.underline = !cellProp.underline;
+  cell.style.textDecoration = cellProp.underline ? 'underline' : 'none';
+  underline.style.backgroundColor = cellProp.underline
+    ? activeColorProp
+    : inactiveColorProp;
+});
+
+fontSize.addEventListener("change", e => {
+  let address = addressBar.value;
+  let [cell, cellProp] = activeCell(address);
+
+  cellProp.fontSize = fontSize.value;
+  cell.style.fontSize = cellProp.fontSize + 'px';
+  fontSize.value = cellProp.fontSize;
+});
+
+fontFamily.addEventListener("change", e => {
+  let address = addressBar.value;
+  let [cell, cellProp] = activeCell(address);
+
+  cellProp.fontFamily = fontFamily.value;
+  cell.style.fontFamily = cellProp.fontFamily;
+  fontFamily.value = cellProp.fontFamily;
+});
+
+fontColor.addEventListener('change', e => {
+  let address = addressBar.value;
+  let [cell, cellProp] = activeCell(address);
+
+  cellProp.fontColor = fontColor.value;
+  cell.style.color = cellProp.fontColor;
+  fontColor.value = cellProp.fontColor;  
+});
+
+BGcolor.addEventListener('change', e => {
+  let address = addressBar.value;
+  let [cell, cellProp] = activeCell(address);
+
+  cellProp.BGcolor = BGcolor.value;
+  cell.style.backgroundColor = cellProp.BGcolor;
+  BGcolor.value = cellProp.BGcolor;  
+});
 
 function activeCell(address) {
   let [rid, cid] = decodeRidCidFromAddress(address);
