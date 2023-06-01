@@ -38,6 +38,7 @@ let inactiveColorProp = '#ecf0f1';
 // Application of two-way binding
 // Attach property listeners
 bold.addEventListener('click', e => {
+  // Access the cell
   let address = addressBar.value;
   let [cell, cellProp] = activeCell(address);
 
@@ -71,7 +72,7 @@ underline.addEventListener('click', e => {
     : inactiveColorProp;
 });
 
-fontSize.addEventListener("change", e => {
+fontSize.addEventListener('change', e => {
   let address = addressBar.value;
   let [cell, cellProp] = activeCell(address);
 
@@ -80,7 +81,7 @@ fontSize.addEventListener("change", e => {
   fontSize.value = cellProp.fontSize;
 });
 
-fontFamily.addEventListener("change", e => {
+fontFamily.addEventListener('change', e => {
   let address = addressBar.value;
   let [cell, cellProp] = activeCell(address);
 
@@ -95,7 +96,7 @@ fontColor.addEventListener('change', e => {
 
   cellProp.fontColor = fontColor.value;
   cell.style.color = cellProp.fontColor;
-  fontColor.value = cellProp.fontColor;  
+  fontColor.value = cellProp.fontColor;
 });
 
 BGcolor.addEventListener('change', e => {
@@ -104,7 +105,37 @@ BGcolor.addEventListener('change', e => {
 
   cellProp.BGcolor = BGcolor.value;
   cell.style.backgroundColor = cellProp.BGcolor;
-  BGcolor.value = cellProp.BGcolor;  
+  BGcolor.value = cellProp.BGcolor;
+});
+
+alignment.forEach(alignElem => {
+  alignElem.addEventListener('click', e => {
+    let address = addressBar.value;
+    let [cell, cellProp] = activeCell(address);
+
+    let alignValue = e.target.classList[0]; // whichever alignElem was clicked, we accessed its class value. The left/center/right property is set on the 0th index of the classList, that's why mentioned the 0th index.
+
+    cellProp.alignment = alignValue; // Data change
+    cell.style.textAlign = cellProp.alignment; // UI change (1)
+
+    switch (alignValue) { // UI change (2)
+      case 'left':
+        leftAlign.style.backgroundColor = activeColorProp;
+        centerAlign.style.backgroundColor = inactiveColorProp;
+        rightAlign.style.backgroundColor = inactiveColorProp;  
+        break;
+      case 'center':
+        leftAlign.style.backgroundColor = inactiveColorProp;
+        centerAlign.style.backgroundColor = activeColorProp;
+        rightAlign.style.backgroundColor = inactiveColorProp;
+        break;
+      case 'right':
+        leftAlign.style.backgroundColor = inactiveColorProp;
+        centerAlign.style.backgroundColor = inactiveColorProp;
+        rightAlign.style.backgroundColor = activeColorProp;
+        break;
+    }
+  });
 });
 
 function activeCell(address) {
