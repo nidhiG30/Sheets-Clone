@@ -46,3 +46,7 @@ function addListenerForAddressBarDisplay(cell, i, j) {
     addressBar.value = `${colID}${rowID}`;
   })
 }
+
+// By default click on first cell via DOM
+let firstCell = document.querySelector('.cell');
+firstCell.click();
