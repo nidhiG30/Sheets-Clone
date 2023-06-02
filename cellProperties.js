@@ -14,6 +14,7 @@ for (let i = 0; i < rows; i++) {
       fontSize: 14,
       fontColor: '#000000',
       BGcolor: '#000000', // default color: identification purpose
+      value: '',
     };
     sheetRow.push(cellProp);
   }
@@ -40,7 +41,7 @@ let inactiveColorProp = '#ecf0f1';
 bold.addEventListener('click', e => {
   // Access the cell
   let address = addressBar.value;
-  let [cell, cellProp] = activeCell(address);
+  let [cell, cellProp] = activecell(address);
 
   // Modifictaion
   cellProp.bold = !cellProp.bold; // Data Change
@@ -52,7 +53,7 @@ bold.addEventListener('click', e => {
 
 italic.addEventListener('click', e => {
   let address = addressBar.value;
-  let [cell, cellProp] = activeCell(address);
+  let [cell, cellProp] = activecell(address);
 
   cellProp.italic = !cellProp.italic;
   cell.style.fontStyle = cellProp.italic ? 'italic' : 'normal';
@@ -63,7 +64,7 @@ italic.addEventListener('click', e => {
 
 underline.addEventListener('click', e => {
   let address = addressBar.value;
-  let [cell, cellProp] = activeCell(address);
+  let [cell, cellProp] = activecell(address);
 
   cellProp.underline = !cellProp.underline;
   cell.style.textDecoration = cellProp.underline ? 'underline' : 'none';
@@ -74,7 +75,7 @@ underline.addEventListener('click', e => {
 
 fontSize.addEventListener('change', e => {
   let address = addressBar.value;
-  let [cell, cellProp] = activeCell(address);
+  let [cell, cellProp] = activecell(address);
 
   cellProp.fontSize = fontSize.value;
   cell.style.fontSize = cellProp.fontSize + 'px';
@@ -83,7 +84,7 @@ fontSize.addEventListener('change', e => {
 
 fontFamily.addEventListener('change', e => {
   let address = addressBar.value;
-  let [cell, cellProp] = activeCell(address);
+  let [cell, cellProp] = activecell(address);
 
   cellProp.fontFamily = fontFamily.value;
   cell.style.fontFamily = cellProp.fontFamily;
@@ -92,7 +93,7 @@ fontFamily.addEventListener('change', e => {
 
 fontColor.addEventListener('change', e => {
   let address = addressBar.value;
-  let [cell, cellProp] = activeCell(address);
+  let [cell, cellProp] = activecell(address);
 
   cellProp.fontColor = fontColor.value;
   cell.style.color = cellProp.fontColor;
@@ -101,7 +102,7 @@ fontColor.addEventListener('change', e => {
 
 BGcolor.addEventListener('change', e => {
   let address = addressBar.value;
-  let [cell, cellProp] = activeCell(address);
+  let [cell, cellProp] = activecell(address);
 
   cellProp.BGcolor = BGcolor.value;
   cell.style.backgroundColor = cellProp.BGcolor;
@@ -111,7 +112,7 @@ BGcolor.addEventListener('change', e => {
 alignment.forEach(alignElem => {
   alignElem.addEventListener('click', e => {
     let address = addressBar.value;
-    let [cell, cellProp] = activeCell(address);
+    let [cell, cellProp] = activecell(address);
 
     let alignValue = e.target.classList[0]; // whichever alignElem was clicked, we accessed its class value. The left/center/right property is set on the 0th index of the classList, that's why mentioned the 0th index.
 
@@ -158,7 +159,8 @@ function addListenerToAttachCellProperties(cell) {
     cell.style.fontSize = cellProp.fontSize + 'px';
     cell.style.fontFamily = cellProp.fontFamily;
     cell.style.color = cellProp.fontColor;
-    cell.style.backgroundColor = cellProp.BGcolor === '#000000' ? 'transparent' : cellProp.BGcolor;
+    cell.style.backgroundColor =
+      cellProp.BGcolor === '#000000' ? 'transparent' : cellProp.BGcolor;
     cell.style.textAlign = cellProp.alignment;
 
     // Apply UI Properties on Container
@@ -167,12 +169,12 @@ function addListenerToAttachCellProperties(cell) {
       : inactiveColorProp;
 
     italic.style.backgroundColor = cellProp.italic
-    ? activeColorProp
-    : inactiveColorProp;
+      ? activeColorProp
+      : inactiveColorProp;
 
     underline.style.backgroundColor = cellProp.underline
-    ? activeColorProp
-    : inactiveColorProp;
+      ? activeColorProp
+      : inactiveColorProp;
 
     fontColor.value = cellProp.fontColor;
 
@@ -200,7 +202,7 @@ function addListenerToAttachCellProperties(cell) {
   });
 }
 
-function activeCell(address) {
+function activecell(address) {
   let [rid, cid] = decodeRidCidFromAddress(address);
 
   // Access cell & storgae object
