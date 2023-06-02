@@ -12,3 +12,15 @@ for (let i = 0; i< rows; i++) {
     })
   }
 }
+
+let formulaBar = document.querySelector('.formula-bar');
+formulaBar.addEventListener('keydown', e => {
+  let inputFormula = formula.value;
+  if (e.key === 'Enter' && inputFormula) {
+    let evaluatedValue = evaluateFormula(inputFormula);
+  }
+});
+
+function evaluateFormula (formula) {
+  return eval(formula);
+}
