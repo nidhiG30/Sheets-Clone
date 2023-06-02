@@ -140,7 +140,7 @@ alignment.forEach(alignElem => {
   });
 });
 
-let allCells = document.querySelector('.cell');
+let allCells = document.querySelectorAll('.cell');
 for (let i = 0; i < allCells.length; i++) {
   addListenerToAttachCellProperties(allCells[i]);
 }
