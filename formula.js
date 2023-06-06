@@ -28,11 +28,33 @@ formulaBar.addEventListener('keydown', e => {
     let evaluatedValue = evaluateFormula(inputFormula); // evaluation for the current cell
 
     // To update UI and Cell Prop in DB
-    setCellUIAndCellProp(evaluatedValue, inputFormula);
+    setCellUIAndCellProp(evaluatedValue, inputFormula, address);
     addChildToParent(inputFormula);
     console.log(sheetDB);
+    
+    updateChildrenCells(address);
   }
 });
+
+
+// Update children cells upon change in dependancy expression
+function updateChildrenCells(parentAddress) {
+   let [parentCell, parentCellProp] = getCellAndCellProp(parentAddress);
+   let children = parentCellProp.children;
+
+   // for all the children in the parent
+   for (let i = 0; i < children.length; i++) {
+    let childAddress = children[i];
+    let [childCell, childCellProp] = getCellAndCellProp(childAddress);
+    let childFormula = childCellProp.formula;
+
+    let evaluatedValue = evaluateFormula(childFormula);
+    setCellUIAndCellProp(evaluatedValue, childFormula, childAddress);
+
+    // Recursively calling the function to update child addresses for every parent function in the sequence
+    updateChildrenCells(childAddress);
+   }
+}
 
 // Add P-C relationship
 function addChildToParent(formula) {
@@ -82,9 +104,8 @@ function evaluateFormula(formula) {
 }
 
 // formula to be set in the UI
-function setCellUIAndCellProp(evaluatedValue, formula) {
+function setCellUIAndCellProp(evaluatedValue, formula, address) {
   // why 'formula': whatever formula we take, store that as well.
-  let address = addressBar.value;
   let [cell, cellProp] = getCellAndCellProp(address);
 
   // UI update
