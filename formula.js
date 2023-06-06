@@ -7,7 +7,13 @@ for (let i = 0; i < rows; i++) {
       let [activeCell, cellProp] = getCellAndCellProp(address); // accessing the cell object
       let enteredData = activeCell.innerText; // to access modified data
 
+      if (enteredData === cellProp.value) return; // if no change in data of cell 
       cellProp.value = enteredData; // .value is taken from cellProps obj in cellProperties.js
+      
+      // If data modifies remove P-C relation, formula empty, update children with new hardcoded (modified) value
+      removeChildFromParent(cellProp.formula);
+      cellProp.formula = '';
+      updateChildrenCells(address);
     });
   }
 }
