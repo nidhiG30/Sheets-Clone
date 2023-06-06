@@ -16,6 +16,7 @@ for (let i = 0; i < rows; i++) {
       BGcolor: '#000000', // default color: identification purpose
       value: '',
       formula: '',
+      children: [], // keeps address of child cells
     };
     sheetRow.push(cellProp);
   }
