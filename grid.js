@@ -24,6 +24,8 @@ for (let i = 0; i < rows; i++) {
   let rowCont = document.createElement('div');
   rowCont.setAttribute('class', 'row-cont');
   for (let j = 0; j < cols; j++) {
+
+    // create <div class='cell' rid=i cid=j contentEditable='true'></div>
     let cell = document.createElement('div');
     cell.setAttribute('class', 'cell');
     cell.setAttribute('contentEditable', 'true');
