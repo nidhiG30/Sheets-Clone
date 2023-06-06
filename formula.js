@@ -16,8 +16,15 @@ for (let i = 0; i < rows; i++) {
 let formulaBar = document.querySelector('.formula-bar');
 formulaBar.addEventListener('keydown', e => {
   let inputFormula = formulaBar.value;
+  
+  // identifying key as 'Enter' key
   if (e.key === 'Enter' && inputFormula) {
-    // identifying key as 'Enter' key
+    // If change in formula, break old P-C relation, evaluate new formula, add new P-C relation
+    let address = addressBar.value;
+    let [cell, cellProp] = getCellAndCellProp(address);
+    if (inputFormula !== cellProp.formula)
+      removeChildFromParent(cellProp.formula); // cellProp.formula' has old rel-nship
+
     let evaluatedValue = evaluateFormula(inputFormula); // evaluation for the current cell
 
     // To update UI and Cell Prop in DB
@@ -27,6 +34,7 @@ formulaBar.addEventListener('keydown', e => {
   }
 });
 
+// Add P-C relationship
 function addChildToParent(formula) {
   let childAddress = addressBar.value;
   console.log(childAddress);
@@ -36,6 +44,23 @@ function addChildToParent(formula) {
     if (asciiValue >= 65 && asciiValue <= 90) {
       let [parentCell, parentCellProp] = getCellAndCellProp(encodedFormula[i]);
       parentCellProp.children.push(childAddress);
+    }
+  }
+}
+
+// get old formula to break that relationship with parent
+function removeChildFromParent(formula) {
+  let childAddress = addressBar.value;
+  console.log(childAddress);
+  let encodedFormula = formula.split(' ');
+  for (let i = 0; i < encodedFormula.length; i++) {
+    let asciiValue = encodedFormula[i].charCodeAt(0);
+    if (asciiValue >= 65 && asciiValue <= 90) {
+      let [parentCell, parentCellProp] = getCellAndCellProp(encodedFormula[i]);
+      
+      // remove child from the parent cell's children array
+      let index = parentCellProp.children.indexOf(childAddress);
+      parentCellProp.children.splice(index, 1);
     }
   }
 }
@@ -57,7 +82,8 @@ function evaluateFormula(formula) {
 }
 
 // formula to be set in the UI
-function setCellUIAndCellProp(evaluatedValue, formula) { // why 'formula': whatever formula we take, store that as well. 
+function setCellUIAndCellProp(evaluatedValue, formula) {
+  // why 'formula': whatever formula we take, store that as well.
   let address = addressBar.value;
   let [cell, cellProp] = getCellAndCellProp(address);
 
