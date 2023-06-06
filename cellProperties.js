@@ -148,6 +148,7 @@ for (let i = 0; i < allCells.length; i++) {
   addListenerToAttachCellProperties(allCells[i]);
 }
 
+// Whenever a user clicks on a cell, the cursor starts to point there
 function addListenerToAttachCellProperties(cell) {
   cell.addEventListener('click', e => {
     let address = addressBar.value;
@@ -201,6 +202,10 @@ function addListenerToAttachCellProperties(cell) {
         rightAlign.style.backgroundColor = activeColorProp;
         break;
     }
+
+    let formulaBar = document.querySelector('.formula-bar');
+    formulaBar.value = cellProp.formula;
+    cell.value = cellProp.value;
   });
 }
 
