@@ -40,6 +40,7 @@ formulaBar.addEventListener('keydown', e => {
     let isCyclic = isGraphCyclic();
     if (isCyclic) {
       alert('Your formula is cyclic');
+      removeChildFromGraphComponent(inputFormula, address);
       return;
     }
 
@@ -64,6 +65,19 @@ function addChildToGraphComponent(formula, childAddress) {
       // B1: A1 + 10;
       // rid -> i, cid -> j
       graphComponentMatrix[prid][pcid].push([crid, ccid]);
+    }
+  }
+}
+
+function removeChildFromGraphComponent(formula, childAddress) {
+  let [crid, ccid] = decodeRidCidFromAddress(childAddress); // decoded children
+  let encodedFormula = formula.split(' ');
+  
+  for (let i = 0; i < encodedFormula.length; i++) {
+    let asciiValue = encodedFormula[i].charCodeAt(0);
+    if (asciiValue >= 65 && asciiValue <= 90) {
+      let [prid, pcid] = decodeRidCidFromAddress(encodedFormula[i]); // decoded parent
+      graphComponentMatrix[prid][pcid].pop();
     }
   }
 }
