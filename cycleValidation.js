@@ -9,3 +9,8 @@ for (let i = 0; i < rows.length; i++) {
   }
   graphComponentMatrix.push(row);
 }
+
+// True -> Cycle, False -> Not Cyclic
+function isGraphCyclic() {
+  
+}

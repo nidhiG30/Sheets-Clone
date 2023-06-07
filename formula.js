@@ -35,6 +35,14 @@ formulaBar.addEventListener('keydown', e => {
 
     addChildToGraphComponent(inputFormula, address);
 
+    // Check formula is cyclic or not, then only evaluate
+    // True -> Cycle, False -> Not Cyclic
+    let isCyclic = isGraphCyclic();
+    if (isCyclic) {
+      alert('Your formula is cyclic');
+      return;
+    }
+
     // To update UI and Cell Prop in DB
     setCellUIAndCellProp(evaluatedValue, inputFormula, address);
     addChildToParent(inputFormula);
