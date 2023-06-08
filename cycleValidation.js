@@ -1,9 +1,9 @@
 // Storage -> 2D array (Basic needed)
 let graphComponentMatrix = [];
 
-for (let i = 0; i < rows.length; i++) {
+for (let i = 0; i < rows; i++) {
   let row = [];
-  for (let j = 0; j < cols.length; j++) {
+  for (let j = 0; j < cols; j++) {
     // Why array -> More than 1 child relation (dependencies)
     row.push([]);
   }
@@ -22,8 +22,8 @@ function isGraphCyclic() {
     let visitedRow = [];
     let dfsVisitedRow = [];
     for (let j = 0; j < cols; j++) {
-      visitedRow.push([]);
-      dfsVisitedRow.push([]);
+      visitedRow.push(false);
+      dfsVisitedRow.push(false);
     }
     visited.push(visitedRow);
     dfsVisited.push(dfsVisitedRow);
@@ -32,9 +32,11 @@ function isGraphCyclic() {
   // check every cell
   for (let i = 0; i < rows; i++) {
     for (let j = 0; j < cols; j++) {
-      let response = dfsCycleDetection(graphComponentMatrix, i, j, visited, dfsVisited);
-      // Found cycle, return immediately, no further exploring
-      if(response) return true;
+      if (visited[i][j] === false) {
+        let response = dfsCycleDetection(graphComponentMatrix, i, j, visited, dfsVisited);
+        // Found cycle, return immediately, no further exploring
+        if(response) return true; 
+      }
     }
   }
 
@@ -57,7 +59,7 @@ function dfsCycleDetection(graphComponentMatrix, srcr, srcc, visited, dfsVisited
   dfsVisited[srcr][srcc] = true;
 
   // Looping over each & every children of the parent A1 -> [ [0, 1], [1, 0], [5, 10], ... ]
-  for (let children = 0; children < graphComponentMatrix[srcr][srcc]; children++){
+  for (let children = 0; children < graphComponentMatrix[srcr][srcc].length; children++){
     // nbrr: child row id / nbrc
     let [nbrr, nbrc] = graphComponentMatrix[srcr][srcc][children];
 

@@ -30,9 +30,7 @@ formulaBar.addEventListener('keydown', e => {
     let [cell, cellProp] = getCellAndCellProp(address);
     if (inputFormula !== cellProp.formula)
       removeChildFromParent(cellProp.formula); // cellProp.formula' has old rel-nship
-
-    let evaluatedValue = evaluateFormula(inputFormula); // evaluation for the current cell
-
+      
     addChildToGraphComponent(inputFormula, address);
 
     // Check formula is cyclic or not, then only evaluate
@@ -40,9 +38,11 @@ formulaBar.addEventListener('keydown', e => {
     let isCyclic = isGraphCyclic(graphComponentMatrix);
     if (isCyclic) {
       alert('Your formula is cyclic');
-      removeChildFromGraphComponent(inputFormula, address);
+      removeChildFromGraphComponent(inputFormula, address); // to break the relation with previous formula if found cycle
       return;
     }
+
+    let evaluatedValue = evaluateFormula(inputFormula); // evaluation for the current cell
 
     // To update UI and Cell Prop in DB
     setCellUIAndCellProp(evaluatedValue, inputFormula, address);
