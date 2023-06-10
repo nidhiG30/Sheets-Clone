@@ -35,13 +35,13 @@ formulaBar.addEventListener('keydown', e => {
 
     // Check formula is cyclic or not, then only evaluate
     // True -> Cycle, False -> Not Cyclic
-    let isCyclic = isGraphCyclic(graphComponentMatrix);
-    if (isCyclic) {
+    let cycleResponse = isGraphCyclic(graphComponentMatrix);
+    if (cycleResponse) {
       // alert('Your formula is cyclic');
       let response = confirm('Your formula is cyclic. Do you want to trace your path?');
       while(response) {
         // Keep on tracking color until user is satisfied
-        isGraphCyclicTracePath(graphComponentMatrix); // ends track feature
+        isGraphCyclicTracePath(graphComponentMatrix, cycleResponse); // ends track feature
         let response = confirm('Your formula is cyclic. Do you want to trace your path?'); // terminates the while loop if user clicks on cancel
       }
 
