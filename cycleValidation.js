@@ -10,6 +10,7 @@ for (let i = 0; i < rows; i++) {
   graphComponentMatrix.push(row);
 }
 
+// Cycle Detection Algorithm
 // Check if child graph is cyclic
 // True -> Cyclic, False -> Not Cyclic: Function to give response in boolean
 function isGraphCyclic() {
