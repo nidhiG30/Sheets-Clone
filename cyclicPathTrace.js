@@ -36,7 +36,10 @@ function dfsCycleDetectionTracePath(graphComponentMatrix, srcr, srcc, visited, d
   dfsVisited[srcr][srcc] = true;
 
   let cell = document.querySelector(`.cell[rid="${srcr}"][cid="${srcc}"]`); // gives the cell
-  cell.style.backgroundColor = "lightblue";
+  
+  setTimeout(() => {
+    cell.style.backgroundColor = "lightblue";
+  }, 1000);
 
   for (let children = 0; children < graphComponentMatrix[srcr][srcc].length; children++){
     let [nbrr, nbrc] = graphComponentMatrix[srcr][srcc][children];
@@ -44,14 +47,19 @@ function dfsCycleDetectionTracePath(graphComponentMatrix, srcr, srcc, visited, d
     if (visited[nbrr][nbrc] === false) {
       let response = dfsCycleDetection(graphComponentMatrix, nbrr, nbrc, visited, dfsVisited);
       if (response) {
-        cell.style.backgroundColor = "transparent";
+        setTimeout(() => {
+          cell.style.backgroundColor = "transparent";
+        }, 1000);
         return true;
       }
     }
 
     else if (visited[nbrr][nbrc] === true && dfsVisited[nbrr][nbrc] === true) { // neighbour condition provides cycle
       let cyclicCell = document.querySelector(`.cell[rid="${nbrr}"][cid="${nbrc}"]`);
-      cyclicCell.style.backgroundColor = "lightsalmon";
+      setTimeout(() => {
+        // cell.style.backgroundColor = "lightblue";
+        cyclicCell.style.backgroundColor = "lightsalmon";
+      }, 1000);
       cyclicCell.style.backgroundColor = "transparent";
       return true;
     }
