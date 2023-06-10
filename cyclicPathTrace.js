@@ -1,7 +1,8 @@
 // Cycle Detection Algorithm
-function isGraphCyclicTracePath() {
-  let visited = [];
-  let dfsVisited = [];
+function isGraphCyclicTracePath(graphComponentMatrix, cycleResponse) {
+  let [srcr, srcc] = cycleResponse;
+  let visited = []; // Node visit trace
+  let dfsVisited = []; // Stack visit trace
 
   for (let i = 0; i < rows; i++) {
     let visitedRow = [];
@@ -14,18 +15,22 @@ function isGraphCyclicTracePath() {
     dfsVisited.push(dfsVisitedRow);
   }
 
-  for (let i = 0; i < rows; i++) {
-    for (let j = 0; j < cols; j++) {
-      if (visited[i][j] === false) {
-        let response = dfsCycleDetection(graphComponentMatrix, i, j, visited, dfsVisited);
-        if(response) return true; 
-      }
-    }
-  }
+  // for (let i = 0; i < rows; i++) {
+  //   for (let j = 0; j < cols; j++) {
+  //     if (visited[i][j] === false) {
+  //       let response = dfsCycleDetection(graphComponentMatrix, i, j, visited, dfsVisited);
+  //       if(response) return true; 
+  //     }
+  //   }
+  // }
+
+  let response = dfsCycleDetection(graphComponentMatrix, srcr, srcc, visited, dfsVisited); // boolean response
+  if (response) return true;
 
   return false;
 }
 
+// Coloring cells for tracking
 function dfsCycleDetectionTracePath(graphComponentMatrix, srcr, srcc, visited, dfsVisited) {
   visited[srcr][srcc] = true;
   dfsVisited[srcr][srcc] = true;
