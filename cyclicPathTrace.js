@@ -43,12 +43,16 @@ function dfsCycleDetectionTracePath(graphComponentMatrix, srcr, srcc, visited, d
 
     if (visited[nbrr][nbrc] === false) {
       let response = dfsCycleDetection(graphComponentMatrix, nbrr, nbrc, visited, dfsVisited);
+      if (response) {
+        cell.style.backgroundColor = "transparent";
+        return true;
+      }
     }
 
     else if (visited[nbrr][nbrc] === true && dfsVisited[nbrr][nbrc] === true) { // neighbour condition provides cycle
       let cyclicCell = document.querySelector(`.cell[rid="${nbrr}"][cid="${nbrc}"]`);
-      cyclicCell.style.backgroundColor = "lightsalmon"
-      cyclicCell.style.backgroundColor = "transparent"
+      cyclicCell.style.backgroundColor = "lightsalmon";
+      cyclicCell.style.backgroundColor = "transparent";
       return true;
     }
   }
