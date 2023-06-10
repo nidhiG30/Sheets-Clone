@@ -20,7 +20,7 @@ for (let i = 0; i < rows; i++) {
 
 // Evaluate formula
 let formulaBar = document.querySelector('.formula-bar');
-formulaBar.addEventListener('keydown', e => {
+formulaBar.addEventListener('keydown', async (e) => {
   let inputFormula = formulaBar.value;
 
   // identifying key as 'Enter' key
@@ -41,7 +41,7 @@ formulaBar.addEventListener('keydown', e => {
       let response = confirm('Your formula is cyclic. Do you want to trace your path?');
       while(response) {
         // Keep on tracking color until user is satisfied
-        isGraphCyclicTracePath(graphComponentMatrix, cycleResponse); // ends track feature
+        await isGraphCyclicTracePath(graphComponentMatrix, cycleResponse); // I want to complete full iteration of color tracking, so I will attach wait here also.
         let response = confirm('Your formula is cyclic. Do you want to trace your path?'); // terminates the while loop if user clicks on cancel
       }
 
