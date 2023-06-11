@@ -2,6 +2,11 @@
 let collectedSheetDB = []; // Contains all sheetDB
 let sheetDB = [];
 
+{
+  let addSheetBtn = document.querySelector('.sheet-add-icon');
+  addSheetBtn.click();
+}
+
 // for (let i = 0; i < rows; i++) {
 //   // rows & cols are fetched from 'grid.js', bcz it is loaded before this file in the DOM
 //   let sheetRow = []; // containes 1-100 cell's collected data

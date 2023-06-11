@@ -21,10 +21,20 @@ function handleSheetDB(sheetIdx) {
   graphComponentMatrix = collectedGraphComponent[sheetIdx];
 }
 
+function handleSheetProperties() {
+  for (let i = 0; i < rows; i++) {
+    for (let j = 0; j < cols; j++) {
+      let cell = document.querySelector(`.cell[rid="${i}"][cid="${j}"]`);
+      cell.click();
+    }
+  }
+}
+
 // when a sheet is clicked/toggled some task performed on it should be shown
 function handleSheetActiveness(sheet) {
   let sheetIdx = Number(sheet.getAttribute('id'));
   handleSheetDB(sheetIdx);
+  handleSheetProperties();
 }
 
 function createSheetDB() {
