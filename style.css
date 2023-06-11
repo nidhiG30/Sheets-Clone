@@ -111,10 +111,21 @@ body {
 }
 
 .sheet-folder {
+  height: 80%;
   text-decoration: underline;
   font-weight: bold;
   text-decoration-thickness: 3px;
   font-size: 0.9rem;
+  /* background-color: lightblue; */
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sheet-content {
+  width: 3.5rem;
+  /* background-color: lightgreen; */
 }
 
 .grid-cont {
