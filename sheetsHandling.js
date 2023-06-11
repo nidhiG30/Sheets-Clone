@@ -1,7 +1,7 @@
 let sheetsFolderContainer = document.querySelector('.sheets-folder-cont');
 let addSheetBtn = document.querySelector('.sheet-add-icon');
 addSheetBtn.addEventListener('click', () => {
-  let sheet = document.createElement('div');
+  let sheet = document.createElement('div'); // created sheet
   sheet.setAttribute('class', 'sheet-folder');
 
   let allSheetFolders = document.querySelectorAll('.sheet-folder');
@@ -13,7 +13,18 @@ addSheetBtn.addEventListener('click', () => {
   // DB: Every sheet has different storage
   createSheetDB();
   createGraphComponentMatrix();
+  handleSheetActiveness(sheet);
 });
+
+function handleSheetDB(sheetIdx) {
+  sheetDB = collectedSheetDB[sheetIdx];
+}
+
+// when a sheet is clicked/toggled some task performed on it should be shown
+function handleSheetActiveness(sheet) {
+  let sheetIdx = Number(sheet.getAttribute('id'));
+  handleSheetDB(sheetIdx);
+}
 
 function createSheetDB() {
   // Storage
