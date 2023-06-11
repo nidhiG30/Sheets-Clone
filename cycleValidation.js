@@ -1,14 +1,16 @@
 // Storage -> 2D array (Basic needed)
-let graphComponentMatrix = [];
+let collectedGraphComponent = []; // to store graphComponentMatrix
 
-for (let i = 0; i < rows; i++) {
-  let row = [];
-  for (let j = 0; j < cols; j++) {
-    // Why array -> More than 1 child relation (dependencies)
-    row.push([]);
-  }
-  graphComponentMatrix.push(row);
-}
+// let graphComponentMatrix = [];
+
+// for (let i = 0; i < rows; i++) {
+//   let row = [];
+//   for (let j = 0; j < cols; j++) {
+//     // Why array -> More than 1 child relation (dependencies)
+//     row.push([]);
+//   }
+//   graphComponentMatrix.push(row);
+// }
 
 // Cycle Detection Algorithm
 // Check if child graph is cyclic

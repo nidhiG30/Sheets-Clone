@@ -10,7 +10,9 @@ addSheetBtn.addEventListener('click', () => {
   sheet.innerHTML = `<div class="sheet-content">Sheet ${allSheetFolders.length + 1}</div>`;
 
   sheetsFolderContainer.appendChild(sheet);
+  // DB: Every sheet has different storage
   createSheetDB();
+  createGraphComponentMatrix();
 });
 
 function createSheetDB() {
@@ -38,4 +40,18 @@ function createSheetDB() {
     sheetDB.push(sheetRow);
   }
   collectedSheetDB.push(sheetDB);
+}
+
+function createGraphComponentMatrix() {
+  let graphComponentMatrix = [];
+
+  for (let i = 0; i < rows; i++) {
+    let row = [];
+    for (let j = 0; j < cols; j++) {
+      // Why array -> More than 1 child relation (dependencies)
+      row.push([]);
+    }
+    graphComponentMatrix.push(row);
+}
+collectedGraphComponent.push(graphComponentMatrix);
 }
