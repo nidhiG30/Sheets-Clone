@@ -1,27 +1,28 @@
 // Storage
-let sheetDB = [];
+let collectedSheetDB = []; // Contains all sheetDB
+// let sheetDB = [];
 
-for (let i = 0; i < rows; i++) {
-  // rows & cols are fetched from 'grid.js', bcz it is loaded before this file in the DOM
-  let sheetRow = []; // containes 1-100 cell's collected data
-  for (let j = 0; j < cols; j++) {
-    let cellProp = {
-      bold: false,
-      italic: false,
-      underline: false,
-      alignment: 'left',
-      fontFamily: 'monospace',
-      fontSize: 14,
-      fontColor: '#000000',
-      BGcolor: '#000000', // default color: identification purpose
-      value: '',
-      formula: '',
-      children: [], // keeps address of child cells
-    };
-    sheetRow.push(cellProp);
-  }
-  sheetDB.push(sheetRow);
-}
+// for (let i = 0; i < rows; i++) {
+//   // rows & cols are fetched from 'grid.js', bcz it is loaded before this file in the DOM
+//   let sheetRow = []; // containes 1-100 cell's collected data
+//   for (let j = 0; j < cols; j++) {
+//     let cellProp = {
+//       bold: false,
+//       italic: false,
+//       underline: false,
+//       alignment: 'left',
+//       fontFamily: 'monospace',
+//       fontSize: 14,
+//       fontColor: '#000000',
+//       BGcolor: '#000000', // default color: identification purpose
+//       value: '',
+//       formula: '',
+//       children: [], // keeps address of child cells
+//     };
+//     sheetRow.push(cellProp);
+//   }
+//   sheetDB.push(sheetRow);
+// }
 
 // Selectors for cell properties
 let bold = document.querySelector('.bold');
@@ -226,3 +227,4 @@ function decodeRidCidFromAddress(address) {
 
   return [rid, cid];
 }
+  
