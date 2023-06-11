@@ -21,6 +21,7 @@ function handleSheetDB(sheetIdx) {
   graphComponentMatrix = collectedGraphComponent[sheetIdx];
 }
 
+// Handling cell properties on every cell
 function handleSheetProperties() {
   for (let i = 0; i < rows; i++) {
     for (let j = 0; j < cols; j++) {
@@ -28,13 +29,19 @@ function handleSheetProperties() {
       cell.click();
     }
   }
+
+  // By default click on first cell via DOM on every sheet toggle
+  let firstCell = document.querySelector('.cell');
+  firstCell.click();
 }
 
 // when a sheet is clicked/toggled some task performed on it should be shown
 function handleSheetActiveness(sheet) {
-  let sheetIdx = Number(sheet.getAttribute('id'));
-  handleSheetDB(sheetIdx);
-  handleSheetProperties();
+  sheet.addEventListener('click', e => {
+    let sheetIdx = Number(sheet.getAttribute('id'));
+    handleSheetDB(sheetIdx);
+    handleSheetProperties();
+  })
 }
 
 function createSheetDB() {
