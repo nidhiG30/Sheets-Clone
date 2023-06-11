@@ -18,6 +18,7 @@ addSheetBtn.addEventListener('click', () => {
 
 function handleSheetDB(sheetIdx) {
   sheetDB = collectedSheetDB[sheetIdx];
+  graphComponentMatrix = collectedGraphComponent[sheetIdx];
 }
 
 // when a sheet is clicked/toggled some task performed on it should be shown
