@@ -102,6 +102,10 @@ body {
   width: 2vw;
 }
 
+.sheet-add-icon:hover {
+  cursor: default;
+}
+
 .sheets-folder-cont {
   display: flex;
   align-items: center;
