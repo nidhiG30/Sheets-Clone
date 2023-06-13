@@ -1,5 +1,7 @@
 let sheetsFolderContainer = document.querySelector('.sheets-folder-cont');
 let addSheetBtn = document.querySelector('.sheet-add-icon');
+let activeSheetColor = '#c8d6e5';
+
 addSheetBtn.addEventListener('click', (e) => {
   let sheet = document.createElement('div'); // created sheet
   sheet.setAttribute('class', 'sheet-folder');
@@ -50,6 +52,15 @@ function handleSheetRemoval(sheet) {
 function handleSheetUIRemoval(sheet) {
   // Sheet Removal from UI
   sheet.remove();
+
+  let allSheetFolders = document.querySelectorAll('.sheet-folder');
+  for (let i = 0; i < allSheetFolders.length; i++) {
+    allSheetFolders[i].setAttribute('id', i);
+    let sheetContent = allSheetFolders[i].querySelector('.sheet-content');
+    sheetContent.innerText = `Sheet ${i + 1}`;
+    allSheetFolders[i].style.backgroundColor = "transparent";
+  }
+  allSheetFolders[0].style.backgroundColor = activeSheetColor;
 }
 
 function handleSheetDB(sheetIdx) {
@@ -77,7 +88,7 @@ function handleSheetUI(sheet) {
   for (let i = 0; i < allSheetFolders.length; i++) {
     allSheetFolders[i].style.backgroundColor = 'transparent';
   }
-  sheet.style.backgroundColor = '#c8d6e5'
+  sheet.style.backgroundColor = activeSheetColor;
 }
 
 // when a sheet is clicked/toggled some task performed on it should be shown
