@@ -1,6 +1,6 @@
 let sheetsFolderContainer = document.querySelector('.sheets-folder-cont');
 let addSheetBtn = document.querySelector('.sheet-add-icon');
-addSheetBtn.addEventListener('click', () => {
+addSheetBtn.addEventListener('click', (e) => {
   let sheet = document.createElement('div'); // created sheet
   sheet.setAttribute('class', 'sheet-folder');
 
@@ -14,6 +14,7 @@ addSheetBtn.addEventListener('click', () => {
   createSheetDB();
   createGraphComponentMatrix();
   handleSheetActiveness(sheet);
+  sheet.click();
 });
 
 function handleSheetDB(sheetIdx) {
@@ -35,12 +36,22 @@ function handleSheetProperties() {
   firstCell.click();
 }
 
+// Takes the active sheet and applies BG-color to it
+function handleSheetUI(sheet) {
+  let allSheetFolders = document.querySelectorAll('.sheet-folder');
+  for (let i = 0; i < allSheetFolders.length; i++) {
+    allSheetFolders[i].style.backgroundColor = 'transparent';
+  }
+  sheet.style.backgroundColor = '#c8d6e5'
+}
+
 // when a sheet is clicked/toggled some task performed on it should be shown
 function handleSheetActiveness(sheet) {
   sheet.addEventListener('click', e => {
     let sheetIdx = Number(sheet.getAttribute('id'));
     handleSheetDB(sheetIdx);
     handleSheetProperties();
+    handleSheetUI(sheet);
   })
 }
 

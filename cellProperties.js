@@ -5,7 +5,6 @@ let sheetDB = [];
 {
   let addSheetBtn = document.querySelector('.sheet-add-icon');
   addSheetBtn.click();
-  handleSheetProperties();
 }
 
 // for (let i = 0; i < rows; i++) {
