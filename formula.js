@@ -42,7 +42,7 @@ formulaBar.addEventListener('keydown', async (e) => {
       while(response) {
         // Keep on tracking color until user is satisfied
         await isGraphCyclicTracePath(graphComponentMatrix, cycleResponse); // I want to complete full iteration of color tracking, so I will attach wait here also.
-        let response = confirm('Your formula is cyclic. Do you want to trace your path?'); // terminates the while loop if user clicks on cancel
+        response = confirm('Your formula is cyclic. Do you want to trace your path?'); // terminates the while loop if user clicks on cancel
       }
 
       removeChildFromGraphComponent(inputFormula, address); // to break the relation with previous formula if found cycle

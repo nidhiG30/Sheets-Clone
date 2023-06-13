@@ -15,7 +15,7 @@ let graphComponentMatrix = [];
 // Cycle Detection Algorithm
 // Check if child graph is cyclic
 // True -> Cyclic, False -> Not Cyclic: Function to give response in boolean
-function isGraphCyclic() {
+function isGraphCyclic(graphComponentMatrix) {
   // Dependency (2D array) -> visited, dfsVisited
   let visited = []; // Node visit trace
   let dfsVisited = []; // Stack visit trace
