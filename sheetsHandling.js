@@ -14,8 +14,43 @@ addSheetBtn.addEventListener('click', (e) => {
   createSheetDB();
   createGraphComponentMatrix();
   handleSheetActiveness(sheet);
+  handleSheetRemoval(sheet);
   sheet.click();
 });
+
+function handleSheetRemoval(sheet) {
+  sheet.addEventListener('mousedown', e => {
+    // Returns a number: 0 - Left click, 1 - scroll button; 2 - right click button
+    if (e.button !== 2) return;
+
+    // For min 1 sheet folder
+    let allSheetFolders = document.querySelectorAll('.sheet-folder');
+    if (allSheetFolders.length === 1) {
+      alert("You need to have at least one sheet!");
+      return;
+    }
+
+    let response = confirm('Heads up!!! Are you sure you want to delete this sheet?');
+    if (response === false) return;
+
+    let sheetIdx = Number(sheet.getAttribute('id'));
+    // Sheet Removal from DB
+    collectedSheetDB.splice(sheetIdx, 1); // on the given index, removes 1 sheet from the DB
+    collectedGraphComponent.splice(sheetIdx, 1);
+    // UI
+    handleSheetUIRemoval(sheet);
+
+    // By default assign DB to sheet 1 (active)
+    sheetDB = collectedSheetDB[0];
+    createGraphComponentMatrix = collectedGraphComponent[0];
+    handleSheetProperties();
+  })
+}
+
+function handleSheetUIRemoval(sheet) {
+  // Sheet Removal from UI
+  sheet.remove();
+}
 
 function handleSheetDB(sheetIdx) {
   sheetDB = collectedSheetDB[sheetIdx];
