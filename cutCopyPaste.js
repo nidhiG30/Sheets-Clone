@@ -13,8 +13,12 @@ for (let i = 0; i < rows; i++) {
   }
 }
 
+let rangeStorage = []; // storage for cells to keep data of (cut, copy, paste). Has rid, cid of top-left to btm-right cell
 function handleSelectedCells(cell) {
   cell.addEventListener('click', e => {
     // Select cell's range
+    if (!ctrlKey) return;
+    if (rangeStorage.length >= 2) return;
+  
   })
 }
