@@ -19,6 +19,14 @@ function handleSelectedCells(cell) {
     // Select cell's range
     if (!ctrlKey) return;
     if (rangeStorage.length >= 2) return;
+
+    // UI
+    cell.style.border = "3px solid #006266";
   
+    // Attributes of clicked cell
+    let rid = Number(cell.getAttribute('rid'));
+    let cid = Number(cell.getAttribute('cid'));
+    rangeStorage.push([rid, cid]);
+    console.log(rangeStorage);
   })
 }
