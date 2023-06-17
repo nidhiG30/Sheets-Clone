@@ -60,5 +60,6 @@ copyBtn.addEventListener('click', e => {
     }
     copyData.push(copyRow);
   }
-  console.log(copyData);
+  
+  defaultSelectedCellsUI(); // After copying, the selected cells are removed from the UI
 })
