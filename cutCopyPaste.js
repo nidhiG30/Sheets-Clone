@@ -18,7 +18,10 @@ function handleSelectedCells(cell) {
   cell.addEventListener('click', e => {
     // Select cell's range
     if (!ctrlKey) return;
-    if (rangeStorage.length >= 2) return;
+    if (rangeStorage.length >= 2) {
+      defaultSelectedCellsUI();
+      rangeStorage = [];
+    }
 
     // UI
     cell.style.border = "3px solid #006266";
@@ -29,4 +32,12 @@ function handleSelectedCells(cell) {
     rangeStorage.push([rid, cid]);
     console.log(rangeStorage);
   })
+}
+
+function defaultSelectedCellsUI() {
+  // rangeStorage keeps data of two cells that were selected using CTRL+Click
+  for (let i = 0; i < rangeStorage.length; i++) {
+    let cell = document.querySelector(`.cell[rid="${rangeStorage[i][0]}"][cid="${rangeStorage[i][1]}"]`);
+    cell.style.border = '1px solid lightgrey';
+  }
 }
