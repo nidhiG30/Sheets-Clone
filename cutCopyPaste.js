@@ -46,15 +46,18 @@ function defaultSelectedCellsUI() {
   }
 }
 
-let copyData = [];
+let copyData = []; // has data between left and right selected cell
 copyBtn.addEventListener('click', e => {
+  if (rangeStorage.length < 2) return;
+  copyData = []; // Initializing empty becoz on every new cell click, new data should get copied to clipboard rmeoving previous data
+
   let startRow = rangeStorage[0][0];
   let startCol = rangeStorage[0][1];
   let endRow = rangeStorage[1][0];
   let endCol = rangeStorage[1][1];
   for (let i = startRow; i < endRow; i++) {
     let copyRow = [];
-    for (let  j = startCol; j < endCol; j++) {
+    for (let j = startCol; j < endCol; j++) {
       let cellProp = sheetDB[i][j];
       copyRow.push(cellProp);
     }
@@ -62,4 +65,42 @@ copyBtn.addEventListener('click', e => {
   }
   
   defaultSelectedCellsUI(); // After copying, the selected cells are removed from the UI
+})
+
+pasteBtn.addEventListener('click', e => {
+  // Paste cell's data
+  if (rangeStorage.length < 2) return;
+
+  let rowDiff = Math.abs(rangeStorage[0][0] - rangeStorage[1][0]);
+  let colDiff = Math.abs(rangeStorage[0][1] - rangeStorage[1][1]);
+
+  // Target
+  let address = addressBar.value;
+  let [stRow, stCol] = decodeRidCidFromAddress(address);
+
+  // r - refers copyData's row
+  // c - refers copyData's col
+  for (let i = stRow, r = 0; i <= stRow + rowDiff; i++, r++) {
+    for (let j = stCol, c = 0; j <= stCol + colDiff; j++, c++) {
+      let cell = document.querySelector(`.cell[rid="${i}"][cid="${j}"]`);
+      if (!cell) continue;
+
+      // DB : to copy paste data & properties (and not children & formula)
+      let data = copyData[r][c]; // has the cell's object
+      let cellProp = sheetDB[i][j]; // has cell object
+
+      cellProp.value = data.value;
+      cellProp.bold = data.bold;
+      cellProp.italic = data.italic;
+      cellProp.underline = data.underline;
+      cellProp.fontSize = data.fontSize;
+      cellProp.fontFamily = data.fontFamily;
+      cellProp.fontColor = data.fontColor;
+      cellProp.BGcolor = data.BGcolor;
+      cellProp.alignment = data.alignment;
+
+      // UI
+      cell.click();
+    }
+  }
 })
