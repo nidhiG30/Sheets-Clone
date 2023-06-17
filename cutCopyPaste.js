@@ -13,6 +13,10 @@ for (let i = 0; i < rows; i++) {
   }
 }
 
+let copyBtn = document.querySelector('.copy');
+let cutBtn = document.querySelector('.cut');
+let pasteBtn = document.querySelector('.paste');
+
 let rangeStorage = []; // storage for cells to keep data of (cut, copy, paste). Has rid, cid of top-left to btm-right cell
 function handleSelectedCells(cell) {
   cell.addEventListener('click', e => {
@@ -41,3 +45,20 @@ function defaultSelectedCellsUI() {
     cell.style.border = '1px solid lightgrey';
   }
 }
+
+let copyData = [];
+copyBtn.addEventListener('click', e => {
+  let startRow = rangeStorage[0][0];
+  let startCol = rangeStorage[0][1];
+  let endRow = rangeStorage[1][0];
+  let endCol = rangeStorage[1][1];
+  for (let i = startRow; i < endRow; i++) {
+    let copyRow = [];
+    for (let  j = startCol; j < endCol; j++) {
+      let cellProp = sheetDB[i][j];
+      copyRow.push(cellProp);
+    }
+    copyData.push(copyRow);
+  }
+  console.log(copyData);
+})
