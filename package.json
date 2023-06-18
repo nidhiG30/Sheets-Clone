@@ -1,0 +1,24 @@
+{
+  "name": "sheets-clone",
+  "version": "1.0.0",
+  "description": "This project is a cloned version of Google Sheets.",
+  "default": "index.html",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nidhiG30/Sheets-Clone.git"
+  },
+  "author": "Nidhi Gadge",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nidhiG30/Sheets-Clone/issues"
+  },
+  "homepage": "https://github.com/nidhiG30/Sheets-Clone#readme",
+  "devDependencies": {
+    "parcel": "^2.9.2"
+  }
+}
