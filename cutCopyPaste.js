@@ -1,10 +1,10 @@
 let ctrlKey;
 document.addEventListener('keydown', e => {
   ctrlKey = e.ctrlKey; // the property will have a boolean value
-})
+});
 document.addEventListener('keyup', e => {
   ctrlKey = e.ctrlKey; // means 'ctrl' is not pressed
-})
+});
 
 for (let i = 0; i < rows; i++) {
   for (let j = 0; j < cols; j++) {
@@ -28,21 +28,23 @@ function handleSelectedCells(cell) {
     }
 
     // UI
-    cell.style.border = "3px solid #006266";
-  
+    cell.style.border = '3px solid #006266';
+
     // Attributes of clicked cell
     let rid = Number(cell.getAttribute('rid'));
     let cid = Number(cell.getAttribute('cid'));
     rangeStorage.push([rid, cid]);
     console.log(rangeStorage);
-  })
+  });
 }
 
 function defaultSelectedCellsUI() {
   // rangeStorage keeps data of two cells that were selected using CTRL+Click
   for (let i = 0; i < rangeStorage.length; i++) {
-    let cell = document.querySelector(`.cell[rid="${rangeStorage[i][0]}"][cid="${rangeStorage[i][1]}"]`);
-    cell.style.border = '1px solid lightgrey';
+    let cell = document.querySelector(
+      `.cell[rid="${rangeStorage[i][0]}"][cid="${rangeStorage[i][1]}"]`,
+    );
+    cell.style.border = '1px solid #dfe4ea';
   }
 }
 
@@ -51,21 +53,25 @@ copyBtn.addEventListener('click', e => {
   if (rangeStorage.length < 2) return;
   copyData = []; // Initializing empty becoz on every new cell click, new data should get copied to clipboard rmeoving previous data
 
-  let startRow = rangeStorage[0][0];
-  let startCol = rangeStorage[0][1];
-  let endRow = rangeStorage[1][0];
-  let endCol = rangeStorage[1][1];
-  for (let i = startRow; i < endRow; i++) {
+  let [startRow, startCol, endRow, endCol] = [
+    rangeStorage[0][0],
+    rangeStorage[0][1],
+    rangeStorage[1][0],
+    rangeStorage[1][1],
+  ];
+
+  for (let i = startRow; i <= endRow; i++) {
     let copyRow = [];
-    for (let j = startCol; j < endCol; j++) {
+    for (let j = startCol; j <= endCol; j++) {
       let cellProp = sheetDB[i][j];
-      copyRow.push(cellProp);
+      let cellDataProp = copyRow.push(cellProp);
+      console.log(cellDataProp);
     }
     copyData.push(copyRow);
   }
-  
+
   defaultSelectedCellsUI(); // After copying, the selected cells are removed from the UI
-})
+});
 
 pasteBtn.addEventListener('click', e => {
   // Paste cell's data
@@ -89,7 +95,7 @@ pasteBtn.addEventListener('click', e => {
       let data = copyData[r][c]; // has the cell's object
       let cellProp = sheetDB[i][j]; // has cell object
 
-      cellProp.value = data.value;
+      cellProp.value = data.value; // assign value to targeted cell
       cellProp.bold = data.bold;
       cellProp.italic = data.italic;
       cellProp.underline = data.underline;
@@ -103,4 +109,4 @@ pasteBtn.addEventListener('click', e => {
       cell.click();
     }
   }
-})
+});
