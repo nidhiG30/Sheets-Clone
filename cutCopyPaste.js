@@ -73,6 +73,40 @@ copyBtn.addEventListener('click', e => {
   defaultSelectedCellsUI(); // After copying, the selected cells are removed from the UI
 });
 
+cutBtn.addEventListener('click', e => {
+  if (rangeStorage.length < 2) return;
+
+  let [startRow, startCol, endRow, endCol] = [
+    rangeStorage[0][0],
+    rangeStorage[0][1],
+    rangeStorage[1][0],
+    rangeStorage[1][1],
+  ];
+
+  for (let i = startRow; i <= endRow; i++) {
+    for (let j = startCol; j <= endCol; j++) {
+      let cell = document.querySelector(`.cell[rid="${i}"][cid="${j}"]`);
+
+      // DB
+      let cellProp = sheetDB[i][j];
+      cellProp.value = "";
+      cellProp.bold = false;
+      cellProp.italic = false;
+      cellProp.underline = false;
+      cellProp.fontSize = 14;
+      cellProp.fontFamily = "monospace";
+      cellProp.fontColor = "#000000";
+      cellProp.BGcolor = "#000000";
+      cellProp.alignment = "left"; 
+
+      // UI
+      cell.click();
+    }
+  }
+
+  defaultSelectedCellsUI();
+});
+
 pasteBtn.addEventListener('click', e => {
   // Paste cell's data
   if (rangeStorage.length < 2) return;
