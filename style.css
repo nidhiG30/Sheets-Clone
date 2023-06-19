@@ -7,20 +7,30 @@ body {
   margin: 0;
 }
 
-.page-actions-con {
+.page-actions-cont {
   height: 3rem;
   background: #006266;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   padding-left: 1rem;
 }
 
 .page-action {
-  margin: 0.5rem;
+  width: 3.5rem;
+  height: 2rem;
+  text-align: center;
   color: #f1f2f6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.cellprop-actions-con {
+.selected-page-action {
+  background-color: #f1f2f6;
+  color: #006266;
+}
+
+.cellprop-actions-cont {
   height: 3rem;
   background-color: #ecf0f1;
   display: flex;
@@ -29,16 +39,16 @@ body {
 }
 
 /* width & hight can't be set on span elements, that's why usig inline-block display property. */
-.cellprop-actions-con > * {
+.cellprop-actions-cont > * {
   display: inline-block;
   margin-right: 1rem;
 }
 
-.cellprop-actions-con > *:hover {
+.cellprop-actions-cont > *:hover {
   cursor: pointer;
 }
 
-.cellprop-actions-con > select {
+.cellprop-actions-cont > select {
   border: none;
   border-radius: 2px;
   outline: none;
@@ -75,7 +85,7 @@ body {
 }
 
 .formula-bar {
-  width: calc( 100vw - 5rem - 0.7rem - 0.7rem - 0.7rem )
+  width: calc( 100vw - 5rem - 0.7rem - 0.7rem - 0.7rem );
 }
 
 .formula-actions-cont > input {
@@ -185,6 +195,10 @@ body {
   border: 1px solid #dfe4ea;
 }
 
+.row-cont {
+  display: flex;
+}
+
 .cell {
   height: 2rem;
   width: 5rem;
@@ -192,17 +206,13 @@ body {
   outline: none;
 }
 
-.row-cont {
-  display: flex;
-}
-
 .color-prop {
   position: relative;
 }
 
-.color-prop > *:hover{
+/* .color-prop > *:hover{
   cursor: pointer;
-}
+} */
 
 .color-prop > input {
   opacity: 0;
