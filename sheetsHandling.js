@@ -12,6 +12,8 @@ addSheetBtn.addEventListener('click', (e) => {
   sheet.innerHTML = `<div class="sheet-content">Sheet ${allSheetFolders.length + 1}</div>`;
 
   sheetsFolderContainer.appendChild(sheet);
+  sheet.scrollIntoView(); // Page scrolls to right when sheet count increases beyond initial limit on viewport
+
   // DB: Every sheet has different storage
   createSheetDB();
   createGraphComponentMatrix();
