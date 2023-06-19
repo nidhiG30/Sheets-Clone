@@ -30,6 +30,16 @@ openBtn.addEventListener('click', e => {
 
       // Basic sheet with default data will be created
       addSheetBtn.click();
+
+      // sheetDB, graphComponentMatrix
+      sheetDB = readSheetData[0];
+      graphComponentMatrix = readSheetData[1]; // set the instances of the relations
+
+      // collected sheet is added at the last index
+      collectedSheetDB[collectedSheetDB.length - 1] = sheetDB;
+      collectedGraphComponent[collectedGraphComponent.length - 1] = graphComponentMatrix;
+      
+      handleSheetProperties();
     })
   });
 })
